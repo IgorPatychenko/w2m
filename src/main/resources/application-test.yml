@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:w2m
+    url: jdbc:h2:mem:w2m-test
     username: w2m
     password: w2m
     driverClassName: org.h2.Driver
