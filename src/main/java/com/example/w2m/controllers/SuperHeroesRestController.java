@@ -1,5 +1,6 @@
 package com.example.w2m.controllers;
 
+import com.example.w2m.annotations.ExecutionTime;
 import com.example.w2m.dtos.SuperHeroDTO;
 import com.example.w2m.entities.SuperHero;
 import com.example.w2m.mappers.SuperHeroMapper;
@@ -32,6 +33,7 @@ public class SuperHeroesRestController {
         this.superHeroMapper = superHeroMapper;
     }
 
+    @ExecutionTime
     @GetMapping(name = "getAllSuperHeroes", value = "/")
     public Flux<SuperHeroDTO> getAllSuperHeroes() {
         return Flux.fromIterable(superHeroMapper.toDtos(superHeroService.getAllSuperHeroes()));
@@ -47,6 +49,7 @@ public class SuperHeroesRestController {
         return Flux.fromIterable(superHeroMapper.toDtos(superHeroService.getSuperHeroesByName(searchParam)));
     }
 
+    @ExecutionTime
     @PostMapping
     public Mono<SuperHero> createSuperHero(@RequestBody SuperHero superhero) {
         return Mono.just(superHeroService.saveSuperHero(superhero));
@@ -59,6 +62,7 @@ public class SuperHeroesRestController {
         return Mono.just(superHeroMapper.toDto(superHero));
     }
 
+    @ExecutionTime
     @CacheEvict(value = "superHeroesCache", key = "#id")
     @DeleteMapping(name = "deleteSuperHero", value = "/{id}")
     public Mono<Void> deleteSuperHero(@PathVariable Long id) {
