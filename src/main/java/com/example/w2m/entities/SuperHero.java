@@ -32,4 +32,8 @@ public class SuperHero {
     @Column(name = "super_power", nullable = false)
     private String superPower;
 
+    public SuperHero(String name, String superPower) {
+        this.name = name;
+        this.superPower = superPower;
+    }
 }
