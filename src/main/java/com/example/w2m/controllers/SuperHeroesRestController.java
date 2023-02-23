@@ -4,6 +4,9 @@ import com.example.w2m.dtos.SuperHeroDTO;
 import com.example.w2m.entities.SuperHero;
 import com.example.w2m.mappers.SuperHeroMapper;
 import com.example.w2m.services.SuperHeroService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/superheroes")
+@Cacheable("superHeroesCache")
 public class SuperHeroesRestController {
 
     private final SuperHeroService superHeroService;
@@ -48,12 +52,14 @@ public class SuperHeroesRestController {
         return Mono.just(superHeroService.saveSuperHero(superhero));
     }
 
+    @CachePut(value = "superHeroesCache", key = "#id")
     @PutMapping(name = "updateSuperHero", value = "/{id}")
     public Mono<SuperHeroDTO> updateSuperHero(@PathVariable Long id, @RequestBody SuperHeroDTO superHeroDTO) {
         SuperHero superHero = superHeroService.updateSuperHero(id, superHeroMapper.toEntity(superHeroDTO));
         return Mono.just(superHeroMapper.toDto(superHero));
     }
 
+    @CacheEvict(value = "superHeroesCache", key = "#id")
     @DeleteMapping(name = "deleteSuperHero", value = "/{id}")
     public Mono<Void> deleteSuperHero(@PathVariable Long id) {
         superHeroService.deleteSuperHero(id);
