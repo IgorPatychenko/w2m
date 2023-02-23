@@ -35,7 +35,7 @@ public class SuperHeroIntegrationTests {
     @Order(1)
     public void createSuperHeroTest() {
         SuperHero superHero = new SuperHero("Batman", "Rich");
-        webTestClient.post().uri("/api/superheroes")
+        webTestClient.post().uri("/api/superheroes/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(superHero)
                 .exchange()

@@ -50,7 +50,7 @@ public class SuperHeroesRestController {
     }
 
     @ExecutionTime
-    @PostMapping
+    @PostMapping(name = "createSuperHero", value = "/")
     public Mono<SuperHero> createSuperHero(@RequestBody SuperHero superhero) {
         return Mono.just(superHeroService.saveSuperHero(superhero));
     }
