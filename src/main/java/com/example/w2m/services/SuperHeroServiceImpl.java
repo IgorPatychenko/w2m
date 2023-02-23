@@ -3,10 +3,12 @@ package com.example.w2m.services;
 import com.example.w2m.entities.SuperHero;
 import com.example.w2m.exceptions.SuperHeroNotFoundException;
 import com.example.w2m.repositories.SuperHeroRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class SuperHeroServiceImpl implements SuperHeroService {
 
     private final SuperHeroRepository superHeroRepository;

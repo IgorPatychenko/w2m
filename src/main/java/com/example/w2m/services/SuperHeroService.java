@@ -1,11 +1,9 @@
 package com.example.w2m.services;
 
 import com.example.w2m.entities.SuperHero;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface SuperHeroService {
 
     List<SuperHero> getAllSuperHeroes();
