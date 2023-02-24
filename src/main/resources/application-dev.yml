@@ -13,3 +13,8 @@ spring:
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
     locations: classpath:db/migration
+
+# secret = w2m
+jwt:
+  secret: dzJt
+  validity: 1800
