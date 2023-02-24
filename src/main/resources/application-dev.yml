@@ -10,3 +10,8 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+
+# secret = w2m
+jwt:
+  secret: dzJt
+  validity: 1800
