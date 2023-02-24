@@ -9,6 +9,9 @@ spring:
     open-in-view: false
   flyway:
     enabled: true
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
     locations: classpath:db/migration
 
 # secret = w2m
